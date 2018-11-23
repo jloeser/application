@@ -1,0 +1,46 @@
+\documentclass[
+    border=0mm,
+    12pt
+]{standalone}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{anyfontsize}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{xspace}
+
+\input{variables}
+
+\begin{document}
+    \sffamily
+
+    \begin{tikzpicture}
+        \useasboundingbox [fill=white] (0,0) rectangle (210mm,297mm);
+
+        \fill [fill=colorA] (0mm,0mm) rectangle (210mm,130mm);
+        \fill [pattern=north west lines, pattern
+        color=colorB] (0,0) rectangle (210mm,130mm);
+        \draw [white,fill={white}] (105mm,130mm) circle (50mm);
+
+        \node [right] at (20mm,257mm) {{\fontsize{50}{60}\selectfont Bewerbung}};
+        \node [right] at (20mm,242mm) {{\fontsize{17}{60}\selectfont als
+        \vjobtitle\xspace bei \vcompanyname}};
+        \node [right] at (20mm,55mm) {\textcolor{white}{\vname}};
+        \node [right] at (20mm,48mm) {\textcolor{white}{\vdegree}};
+        \node [right] at (20mm,41mm) {\textcolor{white}{\vstreet, \vzip\xspace \vcity}};
+        \node [right] at (20mm,34mm) {\textcolor{white}{\vnumber}};
+        \node [right] at (20mm,27mm) {\textcolor{white}{\href{\vemaillink}{\vemail}}};
+        \renewcommand{\_}{{\fontfamily{ptm}\selectfont\textunderscore}}
+        \node [right] at (20mm,20mm) {\href{\vxinglink}{\textcolor{white}{\vxing}}};
+
+        \node [right] at (12mm,41mm) {\includegraphics[width=4mm]{graphics/location.png}};
+        \node [right] at (12mm,34mm) {\includegraphics[width=4mm]{graphics/phone.png}};
+        \node [right] at (12mm,27mm) {\includegraphics[width=4mm]{graphics/mail.png}};
+        \node [right] at (12mm,20mm) {\includegraphics[width=4mm]{graphics/xing.png}};
+
+        \node [right] at (53.55mm,130mm) {\includegraphics[width=100mm]{graphics/me.png}};
+    \end{tikzpicture}
+\end{document}

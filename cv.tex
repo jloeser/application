@@ -1,0 +1,202 @@
+\documentclass[
+    a4paper,
+    border={0pt 0pt 0pt 0pt},
+    class=article,
+    12pt,
+    tikz
+]{standalone}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}% provides font selecting commands
+\usepackage{xunicode}% provides unicode character macros
+\usepackage{xltxtra} % provides some fixes/extras
+\usepackage[hidelinks]{hyperref}
+\usepackage{anyfontsize}
+\usepackage{varwidth}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\input{variables}
+
+\newenvironment{standalonepage}{}{} %Dummy environment that contains pictures in the same page
+\standaloneenv{standalonepage} %The dummy environment is make known to the stand alone
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcommand{\sectionbar}{
+    \begin{tikzpicture}
+        \fill [ fill=colorA
+        ] (0,0) rectangle(\textwidth,1mm);
+        \fill [
+            pattern=north west lines,
+            pattern color=colorB
+        ] (0,0) rectangle(\textwidth,1mm);
+    \end{tikzpicture}
+}
+
+\begin{document}
+\begin{standalonepage}
+    \begin{tikzpicture}
+        \useasboundingbox [fill=white] (0,0) rectangle (210mm,297mm);
+
+        \fill [fill=colorA] (-5mm,-5mm) rectangle (50mm,297mm);
+        \fill [
+            pattern=north west lines,
+            pattern color=colorB
+        ] (-5mm,-5mm) rectangle (50mm,297mm);
+%         \draw [white,fill={white}] (25mm,267mm) circle (23mm);
+%         \node [right] at (0.5mm,267mm) {\includegraphics[width=46mm]{graphics/me.png}};
+
+        \node [right] at (10mm,286mm) {\textcolor{white}{{\Large \vfirstname\ \vsurname}}};
+        \node [right] at (10mm,266mm) {\textcolor{white}{\vbirth}};
+        \node [right] at (10mm,256mm) {\textcolor{white}{\vstreet}};
+        \node [right] at (10mm,251mm) {\textcolor{white}{\vzip\ \vcity}};
+        \node [right] at (10mm,241mm) {\textcolor{white}{\vnumber}};
+        \node [right] at (10mm,231mm) {\textcolor{white}{\href{\vemaillink}{\vemail}}};
+
+        \node [right] at (2mm,266mm) {\includegraphics[width=4mm]{graphics/geb.png}};
+        \node [right] at (2mm,256mm) {\includegraphics[width=4mm]{graphics/location.png}};
+        \node [right] at (2mm,241mm) {\includegraphics[width=4mm]{graphics/phone.png}};
+        \node [right] at (2mm,231mm) {\includegraphics[width=4mm]{graphics/mail.png}};
+
+        \node (education) [
+            text
+            width={\paperwidth-70mm},
+            align=left,
+            anchor=north west
+        ] at (60mm, 290mm) {
+
+            {\Large Berufserfahrung}
+            \sectionbar
+            \vspace{5mm}
+
+            \begin{minipage}[t]{40mm}
+                10/2012 - heute
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Jobtitel}\\
+                {\small Firma, Team}\\\\
+                Verantwortlichkeiten:
+                \begin{itemize}
+                    \setlength\itemsep{0em}
+                    \item Tätigkeit1
+                    \item Tätigkeit2
+                    \item Tätigkeit3
+                    \item Tätigkeit4\\
+                \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{40mm}
+                02/2011 - 09/2012
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Jobtitel}\\
+                {\small Firma, Team}
+            \end{minipage}
+
+            \vspace{15mm}
+            {\Large Ausbildung}
+            \sectionbar
+            \vspace{5mm}
+
+            \begin{minipage}[t]{40mm}
+                03/2016 - heute
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Master of Science in Informatik}\\
+                \small{Hochschule Foobar}\\\\
+                Abschlussarbeit:\\
+                \textit{,,Hans Wurst allein Zuhaus 2''}
+                \\\\
+                Voraussichtlich abgeschlossen im November 2051\\
+            \end{minipage}
+            \begin{minipage}[t]{40mm}
+                10/2012 - 03/2016
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Bachelor of Science in Informatik}\\
+                \small{Hochschule Foobar}\\\\
+                Abschlussarbeit:\\
+                \textit{,,Hans Wurst allein Zuhaus''}\\\\
+                Gesamturteil gut (2,0) - Bachelorarbeit gut (2,0)
+                \\
+            \end{minipage}
+            \begin{minipage}[t]{40mm}
+                09/2008 - 02/2011
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Fachinformatiker Anwendungsentwicklung}\\
+                \small{Firma}\\\\
+                Ausbildung\\\\
+                Gesamtergebnis sehr gut (100 Punkte)\\
+            \end{minipage}
+            \begin{minipage}[t]{40mm}
+                10/2006 - 08/2008
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Bachelor of Engineering in Technischer Informatik}\\
+                \small{Hochschule Foobar}\\\\
+                ohne Abschluss\\\\
+            \end{minipage}
+            \begin{minipage}[t]{40mm}
+                1998 - 2006
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                \textbf{Allgemeine Hochschulreife}\\
+                \small{Foobar-Gymnasium}\\\\
+                Durchschnittsnote 1,0\\\\
+            \end{minipage}
+            \vspace{15mm}
+
+        };
+
+    \end{tikzpicture}
+\end{standalonepage}
+
+\begin{standalonepage}
+    \begin{tikzpicture}
+        \useasboundingbox [fill=white] (0,0) rectangle (210mm,297mm);
+
+        \fill [fill=colorA] (-5mm,-5mm) rectangle (50mm,297mm);
+        \fill [
+            pattern=north west lines,
+            pattern color=colorB
+        ] (-5mm,-5mm) rectangle (50mm,297mm);
+        \node [right] at (10mm,286mm) {\textcolor{white}{{\Large \vfirstname\
+        \vsurname}}};
+        \node (education) [
+            text
+            width={\paperwidth-70mm},
+            align=left,
+            anchor=north west
+        ] at (60mm, 290mm) {
+
+            {\Large Fähigkeiten}
+            \sectionbar
+            \vspace{5mm}
+
+            \begin{minipage}[t]{50mm}
+                Sprachkenntnisse:
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+              Sprache1 (Muttersprache)\\Sprache2 (konversationssicher) \\
+            \end{minipage}
+            \begin{minipage}[t]{50mm}
+                Programmiersprachen:
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+                Sprache1, Sprache2, Sprache3\\
+            \end{minipage}
+            \begin{minipage}[t]{50mm}
+              Interessen:
+            \end{minipage}
+            \begin{minipage}[t]{120mm}
+              Hobby1, Hobby2
+            \end{minipage}
+        };
+    \end{tikzpicture}
+\end{standalonepage}
+
+\end{document}

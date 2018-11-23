@@ -1,0 +1,109 @@
+\documentclass[
+    foldmarks=false,
+    foldmarks=TBMPL,
+    firsthead=on,
+    locfield=wide,
+    version=last,
+    pagenumber=off,
+    enlargefirstpage=on,
+    backaddress=false
+]{scrlttr2}
+
+% \usepackage[ngerman]{babel}
+\usepackage[german]{babel}% provdes english date format
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}% provides font selecting commands
+\usepackage{xunicode}% provides unicode character macros
+\usepackage{xltxtra} % provides some fixes/extras
+\usepackage[hidelinks]{hyperref}
+\usepackage{anyfontsize}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\raggedsignature}{\raggedright}
+
+\setlength{\parindent}{0in}
+\newcommand\tab[1][5mm]{\hspace*{#1}}
+
+\input{variables}
+
+\begin{document}
+    \setkomavar{fromname}{\vfirstname\ \vsurname}
+    \setkomavar{fromaddress}{\vstreet\\ \vzip\ \vcity}
+    \setkomavar{fromphone}{\vnumber}
+
+    \setkomavar{firstfoot}{
+        \begin{tikzpicture}[remember picture,overlay]
+            \node (bottom) [
+                shape=rectangle,
+                fill=colorA,
+                minimum height=10mm,
+                minimum width=\paperwidth,
+                anchor=south west
+            ] at (current page.south west) {};
+            \node (bottom stripes) [
+                shape=rectangle,
+                pattern color=colorB,
+                minimum height=10mm,
+                minimum width=\paperwidth,
+                anchor=south west,
+                pattern=north west lines
+            ] at (current page.south west) {};
+            \node at (bottom.center) {
+                {\textcolor{white}{
+                    \includegraphics[trim=0 3mm 0
+                    0,width=4mm]{graphics/phone.png}\tab\vnumber\tab|\tab\includegraphics[trim=0 5mm 0
+                    0,width=4mm]{graphics/mail.png}\tab
+                    \href{\vemaillink}{\vemail}\tab|\tab\includegraphics[trim=0
+                    5mm 0
+                  0,width=4mm]{graphics/xing.png}\tab\href{\vxinglink}{\textcolor{white}{\vxing}}
+                }}
+            };
+        \end{tikzpicture}
+    }
+
+    \setkomavar{firsthead}{\begin{tikzpicture}[remember picture,overlay]
+            \node (top) [
+                shape=rectangle,
+                fill=colorA,
+                minimum height=30mm,
+%                 minimum width=70mm,
+                minimum width=\paperwidth,
+                anchor=north west
+            ] at (current page.north west) {};
+            \node (top stripes) [
+                shape=rectangle,
+                pattern color=colorB,
+                minimum height=30mm,
+%                 minimum width=70mm,
+                minimum width=\paperwidth,
+                anchor=north west,
+                pattern=north west lines
+            ] at (current page.north west) {};
+        \end{tikzpicture}{\textcolor{white}{\usekomavar{fromname}\\\usekomavar{fromaddress}\\}}
+    }
+
+    \begin{letter}{
+        \vcompanyname\\
+        \vcompanystreet\\
+        \vcompanyzip\ \vcompanycity
+%         \vspace{0.5em}
+    }
+
+      \setkomavar{subject}{Bewerbung als \vjobtitle}
+    \opening{Sehr geehrte Damen und Herren,}
+
+    \lipsum[1-2]\
+
+      Sollte ich Ihr Interesse geweckt haben, freue ich mich auf ein
+      persönliches Gespräch.\\
+
+    Mit freundlichen Grüßen\\
+    \includegraphics[width=2.5cm]{graphics/sign.png}\\
+    \vname
+
+    \end{letter}
+\end{document}
